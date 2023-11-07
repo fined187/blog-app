@@ -70,7 +70,8 @@ footer {
 }
 
 /* post list */
-.post__list {
+.post__list, 
+.post__detail {
   min-height: 90vh;
   padding: 20px;
   text-align: center;
@@ -151,8 +152,6 @@ footer a:hover {
   color: black;
 }
 
-/* post list, post detail */
-
 
 /* post detail */
 .post__detail .post__title {
@@ -175,6 +174,9 @@ footer a:hover {
   padding: 20px 0px;
 }
 
+
+
+
 .profile__box {
   display: flex;
   gap: 18px;
@@ -192,8 +194,8 @@ footer a:hover {
   display: flex;
   gap: 18px;
   align-items: center;
-
 }
+
 
 .profile__image {
   width: 72px;

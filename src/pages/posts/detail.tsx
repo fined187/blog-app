@@ -1,12 +1,13 @@
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import PostPage from "../../components/PostDetail";
+import PostDetail from "../../components/PostDetail";
 
-export default function PostDetail() {
+
+export default function PostPage() {
   return (
     <>
       <Header />
-      <PostPage />
+      <PostDetail />
       <Footer />
     </>
   )
