@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function PostDetail() {
   return (
     <div className="post__detail">
@@ -9,7 +11,9 @@ export default function PostDetail() {
         </div>
         <div className="post__utils-box">
           <div className="post__delete">삭제</div>
-          <div className="post__edit">수정</div>
+          <div className="post__edit">수정
+            <Link to={`/posts/edit/1`} />
+          </div>
         </div>
         <div className="post__date">2021.01.01</div>
         <div className="post__title">게시글</div>

@@ -152,6 +152,10 @@ footer a:hover {
   cursor: pointer;
 }
 
+.post__edit {
+  cursor: pointer;
+}
+
 .post__delete:hover,
 .post__delete:focus {
   color: black;
