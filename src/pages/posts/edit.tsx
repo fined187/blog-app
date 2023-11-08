@@ -1,7 +1,3 @@
 export default function PostEdit() {
-  return (
-    <>
-      Post Edit
-    </>
-  )
+  return <>Post Edit</>;
 }

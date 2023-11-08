@@ -11,5 +11,5 @@ export default function ProfilePage() {
       <PostList hasNavigation={false} />
       <Footer />
     </>
-  )
+  );
 }

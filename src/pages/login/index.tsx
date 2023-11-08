@@ -1,7 +1,3 @@
 export default function Login() {
-  return (
-    <>
-      Login
-    </>
-  )
+  return <>Login</>;
 }
