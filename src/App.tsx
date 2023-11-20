@@ -1,6 +1,6 @@
 import "./App.css";
 import Router from "./components/Router";
-import { app } from "./firebaseApp";
+import { app, db } from "./firebaseApp";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastContainer } from "react-toastify";
@@ -33,6 +33,6 @@ function App() {
       /> : "로딩중..."}
     </>
   );
-}
+};
 
 export default App;
