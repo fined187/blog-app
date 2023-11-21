@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 interface PostListProps {
   hasNavigation?: boolean;
-  defaultTab?: TabType;
+  defaultTab?: TabType | CategoryType;
 };
 
 type TabType = "all" | "my";
@@ -21,10 +21,14 @@ export interface PostProps {
   createdAt: string;
   updatedAt: string;
   uid: string;
+  category?: CategoryType; 
 }
 
+export type CategoryType = 'Frontend' | 'Backend' | 'DevOps' | 'Design' | 'Etc';
+const CATEGORIES: CategoryType[] = ['Frontend', 'Backend', 'DevOps', 'Design', 'Etc'];
+
 export default function PostList({ hasNavigation = true, defaultTab = 'all' }: PostListProps) {
-  const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
+  const [activeTab, setActiveTab] = useState<TabType | CategoryType>(defaultTab);
   const [posts, setPosts] = useState<PostProps[]>([]);
   const { user } = useContext(AuthContext);
   const [post, setPost] = useState<PostProps | null>(null);
@@ -37,9 +41,12 @@ export default function PostList({ hasNavigation = true, defaultTab = 'all' }: P
     if (activeTab === "my" && user) {
       // 내 글
       postQuery = query(postRef, where("uid", "==", user?.uid), orderBy("createdAt", "desc"));
-    } else {
+    } else if (activeTab === 'all') {
       // 전체 글
       postQuery = query(postRef, orderBy("createdAt", "desc"));
+    } else {
+      //  카테고리별 글
+      postQuery = query(postRef, where("category", "==", activeTab), orderBy("createdAt", "desc"));
     }
     const data = await getDocs(postQuery);
     data?.forEach((doc) => {
@@ -72,6 +79,13 @@ export default function PostList({ hasNavigation = true, defaultTab = 'all' }: P
             <div role="presentation" className={activeTab === 'my' ? "post__navigation--active" : ''} onClick={() => {
               setActiveTab("my");
             }}>나의 글</div>
+            {
+              CATEGORIES?.map((category) => (
+                <div key={category} role="presentation" className={activeTab === category ? "post__navigation--active" : ''} onClick={() => {
+                  setActiveTab(category);
+                }}>{category}</div>
+              ))
+            }
           </div>
           <div className="post__list">
             {posts?.length > 0 ? posts?.map((post, index) => (

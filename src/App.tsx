@@ -1,10 +1,11 @@
 import "./App.css";
 import Router from "./components/Router";
-import { app, db } from "./firebaseApp";
-import { useEffect, useState } from "react";
+import { app } from "./firebaseApp";
+import { useContext, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeContext } from "context/ThemeContext";
 
 function App() {
   const auth =getAuth(app);
@@ -25,13 +26,15 @@ function App() {
     });
   }, [auth]);
 
+  const context = useContext(ThemeContext);
+
   return (
-    <>
+    <div className={context.theme === 'light' ? 'white' : 'dark'}>
       <ToastContainer />
       {init ? <Router 
         isAuthenticated={isAuthenticated}
       /> : "로딩중..."}
-    </>
+    </div>
   );
 };
 
